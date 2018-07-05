@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+        <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+      </button>
+        <button class="float-right" ion-button clear (click)="SaveChanges()">
+          <ion-icon class="primary-text-color font-size-30" name="md-checkmark-circle-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <ion-card class="primary-bg-color">
+        <ion-card-content>
+            <ion-item class="margin-bottom-5px border-line-1px-primary border-radius-5-px primary-bg-color fifth-text-color">
+                <ion-label>Post Type</ion-label>
+                <ion-select [(ngModel)]="itemInfo.PostType">
+                    <ion-option value="1">Selling</ion-option>
+                    <ion-option value="2">Looking</ion-option>
+                    <ion-option value="3">Trade</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-input type="text" class="border-line-1px-primary border-radius-5-px fifth-text-color" [(ngModel)]="itemInfo.Title" placeholder="Title"></ion-input>
+            <ion-input type="number" class="margin-top-10-px border-line-1px-primary border-radius-5-px fifth-text-color" [(ngModel)]="itemInfo.Price" placeholder="Price"></ion-input>
+            <ion-textarea class="margin-top-10-px height-100-px border-line-1px-primary border-radius-5-px fifth-text-color" [(ngModel)]="itemInfo.Description" placeholder="Description"></ion-textarea>
+            <ion-grid class="border-line-1px-primary border-radius-5-px margin-top-10-px">
+                <ion-row>
+                    <ion-col col-4 *ngFor="let image of itemImages">
+                        <img (click)="RemoveImage(image)" src="{{image.Source}}" class="height-100-px width-100-percent" />
+                    </ion-col>
+                    <ion-col col-4 *ngIf="isUploadingProductImage">
+                        <ion-spinner class="width-100-percent" name="bubbles"></ion-spinner>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <button ion-button clear (click)="UploadImage()">
+                                <ion-icon class="fifth-text-color font-size-40" name="md-camera"></ion-icon>
+                            </button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <button class="tertiary-bg-color primary-text-color" *ngIf="selectedSub.Name.length>0?true:false" ion-button>{{selectedSub.Name}}</button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <button class="tertiary-bg-color primary-text-color" ion-button (click)="SelectCategoryPage()">Select Category</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

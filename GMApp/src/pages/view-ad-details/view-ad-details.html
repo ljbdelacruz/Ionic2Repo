@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+        <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <ion-slides #slides class="primary-bg-color z-index-50" (ionSlideDidChange)="SlideChange()">
+        <ion-slide *ngFor="let image of itemInfo.ItemImages">
+            <img src="{{image.Source}}" class="height-300px width-100-percent" imageViewer/>
+        </ion-slide>
+    </ion-slides>
+    <div class="position-relative transform-translate2d-205px z-index-100 primary-bg-color width-100-px height-50-px border-radius-5-px">
+        <p class="padding-top-5px fifth-text-color vertical-align-middle text-align-center font-size-25">{{itemInfo.Price}}</p>
+    </div>
+    <div class="position-relative height-100-px transform-translate2d-80px z-index-100">
+        <button ion-button class="float-left font-size-20 primary-bg-color" (click)="PrevSlide()">
+            <ion-icon name="ios-arrow-dropleft-outline"></ion-icon>
+        </button>
+        <button ion-button class="float-right font-size-20 primary-bg-color" (click)="NextSlide()">
+            <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
+        </button>
+    </div>
+    <ion-card class="position-relative transform-translate2d-type1">
+        <ion-card-content class="primary-bg-color">
+            <p class="font-size-20 font-weight-bold fifth-text-color">{{itemInfo.Categories[0].Name}}&nbsp;>&nbsp;{{itemInfo.Categories[0].SubCategories[0].Name}}</p>
+            <h3 class="fifth-text-color">Description</h3>
+            <p class="font-size-20 fifth-text-color">{{itemInfo.Description}}</p>
+            <p class="font-size-15 fifth-text-color">Updated At: {{itemInfo.UpdatedAt}}</p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <h3 *ngIf="itemInfo.isArchived" class="margin-left-10 primary-text-color">(SOLD)</h3>
+        <h3 class="margin-left-10 primary-text-color">
+            <span *ngIf="itemInfo.PostType==1?true:false">Selling: </span>
+            <span *ngIf="itemInfo.PostType==2?true:false">Looking: </span>
+            <span *ngIf="itemInfo.PostType==3?true:false">Trading: </span> {{itemInfo.Title}}
+        </h3>
+        <ion-item no-lines item-wrapper class="border-line-1px-secondary border-radius-5-px sixth-bg-color" (click)="ViewUserInformation()">
+            <div *ngIf="isGettingUserInfo">
+                <p class="width-100-percent text-align-center fifth-text-color">Fetching user info please wait...</p>
+                <ion-spinner class="width-100-percent fifth-text-color" name="bubbles"></ion-spinner>
+            </div>
+            <ion-avatar item-start>
+                <img src="{{noImagePath}}" *ngIf="userInfo.ProfileImage==''?true:false" class="width-50-px height-50-px">
+                <img src="{{userInfo.ProfileImage}}" *ngIf="userInfo.ProfileImage!=''?true:false" class="width-50-px height-50-px">
+            </ion-avatar>
+            <div class="margin-left-10" item-inner>
+                <p class="font-size-15 fifth-text-color">&nbsp;&nbsp;{{userInfo.Firstname}} {{userInfo.Lastname}}</p>
+            </div>
+        </ion-item>
+        <div *ngIf="!itemInfo.isArchived && !isAdOwner">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <button (click)="AskAvailability()" ion-button class="width-100-percent primary-bg-color">Ask For Availability</button>
+                    </ion-col>
+                    <ion-col>
+                        <button *ngIf="userInfo.ContactNumber.length>0?true:false" ion-button class="width-100-percent primary-bg-color" (click)="AskViaSMS()">
+                                    <p>SMS
+                                       <br>
+                                       ({{userInfo.ContactNumber}})
+                                    </p>
+                                </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <p *ngIf="userInfo.ContactNumber.length<=0?true:false" class="text-align-center">This user has no Contact Number Assigned</p>
+        </div>
+    </ion-navbar>
+</ion-footer>

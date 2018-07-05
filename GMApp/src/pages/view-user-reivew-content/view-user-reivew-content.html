@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+          </button>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="tertiary-bg-color">
+    <div *ngIf="isReviewLoading">
+        <p class="width-100-percent text-align-center fifth-text-color">Fetching review please wait...</p>
+        <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+    </div>
+    <p *ngIf="Reviews.length<=0?true:false" class="font-size-20 text-align-center fifth-text-color">No Reviews Yet</p>
+
+    <ion-list>
+        <ion-item no-lines *ngFor="let review of Reviews" item-wrapper text-wrap class="border-radius-5-px margin-top-10-px primary-bg-color">
+            <ion-avatar item-start>
+                <img src="{{noImagePath}}" *ngIf="review.SenderInfo.UserSetting.ProfileImage==''?true:false" class="width-50-px height-50-px">
+                <img src="{{review.SenderInfo.UserSetting.ProfileImage}}" *ngIf="review.SenderInfo.UserSetting.ProfileImage!=''?true:false" class="width-50-px height-50-px">
+            </ion-avatar>
+            <div class="margin-left-10" item-inner>
+                <div>
+                    <ion-icon class="fifth-text-color font-size-40" *ngFor="let star of review.Stars" name="md-star"></ion-icon>
+                </div>
+                <hr>
+                <h3 class="fifth-text-color">{{review.SenderInfo.EmailAddress}}</h3>
+                <p class="fifth-text-color word-break max-width-100p">{{review.Comment}}</p>
+            </div>
+            <div item-end *ngIf="review.SenderID==viewerID">
+                <button ion-button clear (click)="RemoveReview(review.ID)">
+                    <ion-icon class="fifth-text-color font-size-40" name="md-trash"></ion-icon>
+                </button>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer *ngIf="viewerID != userID">
+    <ion-navbar>
+        <button ion-button class="width-98-percent primary-bg-color" (click)="AddReviewEvent()">Add Review</button>
+    </ion-navbar>
+</ion-footer>

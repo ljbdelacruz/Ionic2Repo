@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="Filter()">
+            <ion-icon class="primary-text-color font-size-30" name="md-checkmark-circle-outline"></ion-icon>
+          </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <ion-searchbar class="tertiary-bg-color" (ionInput)="FilterBySearchBox($event)"></ion-searchbar>
+    <ion-card class="primary-bg-color">
+        <ion-card-content>
+            <ion-list>
+                <ion-item class="border-radius-10-px margin-bottom-5px">
+                    <ion-label>Post Type</ion-label>
+                    <ion-select [(ngModel)]="postType">
+                        <ion-option value="1">Selling</ion-option>
+                        <ion-option value="2">Looking</ion-option>
+                        <ion-option value="3">Trade</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="margin-top-5-px" class="tertiary-bg-color border-radius-10-px">
+                    <ion-grid>
+                        <ion-row *ngIf="categories.length>0?true:false">
+                            <ion-col *ngFor="let cat of categories">
+                                <button class="primary-bg-color" ion-button>{{(cat.Name | slice:0:5)+(cat.Name.length>5?'...':'')}}&nbsp;>&nbsp;{{(cat.SubCategories[0].Name | slice:0:5)+(cat.SubCategories[0].Name.length>5?'...':'')}}&nbsp;&nbsp;
+                                    <ion-icon (click)="RemoveCategory(cat)" class="fifth-text-color font-size-30" name="md-close-circle"></ion-icon>
+                                </button>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <button ion-button class="primary-bg-color fifth-text-color" (click)="OpenCategoryEvent()">Select Category</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <p class="float-left fifth-text-color">Search Radius</p>
+                <p class="float-right fifth-text-color">{{radiusRange.toFixed(0)}}&nbsp;km</p>
+                <ion-item class="float-clear">
+                    <ion-range min="0" max="50" [(ngModel)]="radiusRange" color="secondary">
+                        <ion-label range-left>0km</ion-label>
+                        <ion-label range-right>50km</ion-label>
+                    </ion-range>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button *ngIf="!isSelectedCategory" class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="AddEvent()">
+            <ion-icon class="fifth-text-color" name="md-checkmark-circle-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div *ngIf="mode==1?true:false">
+        <div *ngIf="isCategory">
+            <ion-input type="text" placeholder="Category Name" [(ngModel)]="categoryInfo.Name"></ion-input>
+        </div>
+        <div *ngIf="!isCategory">
+            <ion-input type="text" placeholder="Sub Category Name" [(ngModel)]="subCatInfo.Name"></ion-input>
+        </div>
+    </div>
+</ion-content>

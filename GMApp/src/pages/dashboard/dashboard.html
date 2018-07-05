@@ -1,0 +1,59 @@
+<ion-content padding class="tertiary-bg-color">
+    <div class="margin-bottom-5px">
+        <button class="float-right" ion-button clear (click)="TogglePopover($event)">
+            <ion-icon class="primary-text-color font-size-30" name="ios-menu"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="AddProductEvent()">
+                    <ion-icon class="primary-text-color font-size-30" name="md-add"></ion-icon>
+                  </button>
+    </div>
+    <div class="float-clear width-100-percent border-radius-5-px">
+        <p class="font-size-15 primary-text-color padding-top-5px padding-left-5px">Most Viewed</p>
+        <div *ngIf="isMostViewedLoading">
+            <p class="width-100-percent text-align-center">Loading Ads please wait...</p>
+            <ion-spinner class="width-100-percent" name="bubbles"></ion-spinner>
+        </div>
+        <ion-scroll *ngIf="!isMostViewedLoading" scrollX="true">
+            <picture *ngFor="let item of itemsMostViewed" class="height-70-px width-70-px scroll-item selectable-icon" (click)="ViewAdDetails(item)">
+                <img *ngIf="item.ItemImages.length>0" src="{{item.ItemImages[0].Source}}" class="height-70-px width-70-px border-radius-100p scroll-item position-absolute" />
+                <img *ngIf="item.ItemImages.length<=0" src="{{tempImage}}" class="height-70-px width-70-px border-radius-100p scroll-item selectable-icon position-absolute" />
+            </picture>
+        </ion-scroll>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button class="primary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="MarketEvent()">
+                    <p class="text-align-center">
+                        <ion-icon name="md-cart" class="fifth-text-color font-size-30"></ion-icon>
+                        <br> Market
+                    </p>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button class="primary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="ViewMyAds()">
+                    <p class="text-align-center">
+                        <ion-icon name="md-browsers" class="fifth-text-color font-size-30"></ion-icon>
+                        <br> My Ads
+                    </p>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button class="primary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="ViewMyInbox()">
+                    <p class="text-align-center">
+                        <ion-icon name="md-chatbubbles" class="fifth-text-color font-size-30"></ion-icon>
+                        <br> Inbox
+                    </p>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="ViewNotification()">
+            <ion-icon class="font-size-25 primary-text-color" name="md-notifications"></ion-icon>
+            <ion-badge *ngIf="notificationCount>0?true:false" item-end class="primary-text-color" clear>{{notificationCount}}</ion-badge>
+        </button>
+    </ion-navbar>
+</ion-footer>

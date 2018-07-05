@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <div *ngIf="isLoadingRooms">
+        <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+    </div>
+    <p *ngIf="roomlist.length <= 0 && isLoadingRooms==false?true:false" class="text-align-center primary-text-color">No Messages Available</p>
+    <ion-list>
+        <ion-item no-lines *ngFor="let room of roomlist" item-wrapper class="border-radius-5-px primary-bg-color">
+            <ion-avatar item-start (click)="ViewConversation(room)">
+                <img src="{{noImagePath}}" class="width-50-px height-50-px">
+            </ion-avatar>
+            <div class="margin-left-10" item-inner (click)="ViewConversation(room)">
+                <h3 class="fifth-text-color">{{room.Name}}</h3>
+            </div>
+            <div item-end>
+                <button ion-button clear (click)="ViewMoreOptions($event, room)">
+                    <ion-icon class="fifth-text-color font-size-20" name="md-settings"></ion-icon>
+                </button>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

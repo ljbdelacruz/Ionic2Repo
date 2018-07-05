@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="ViewChatRoomInfo()">
+            <ion-icon class="primary-text-color font-size-30" name="md-information-circle"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <ion-list>
+        <div *ngIf="isLoadingMessage">
+            <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+        </div>
+        <ion-row>
+            <ion-col col-12 *ngFor="let message of messages">
+                <div class="float-right " *ngIf="userInfo.ID != message.SenderID?true:false">
+                    <span *ngFor="let sender of participants" class="float-right">
+                        <img *ngIf="sender.ID == message.SenderID && sender.ProfileImage.length>0?true:false" src="{{sender.ProfileImage}}" class="width-30-px height-30-px border-radius-100p" (click)="ViewUserInformation(sender)" />
+                        <img *ngIf="sender.ID == message.SenderID && sender.ProfileImage.length<=0?true:false" src="{{noImagePath}}" class="width-30-px height-30-px border-radius-100p" (click)="ViewUserInformation(sender)" />
+                    </span>
+                    <ion-card *ngIf="message.MessageType=='46a4d670-cda1-483c-a35a-1b7ac5111a5a'?true:false" class="primary-bg-color border-radius-10-px">
+                        <ion-card-content>
+                            <p class="fifth-text-color">{{message.Text}}</p>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card *ngIf="message.MessageType=='f7e61265-0ba9-4513-9993-870a57e2dbf2'?true:false" class="primary-bg-color border-radius-10-px">
+                        <ion-card-content>
+                            <img src="{{message.Text}}" class="height-100-px width-100-px" imageViewer/>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <div class="float-left" *ngIf="userInfo.ID == message.SenderID?true:false">
+                    <span *ngFor="let sender of participants" class="float-left">
+                        <img *ngIf="sender.ID == message.SenderID && sender.ProfileImage.length>0?true:false" src="{{sender.ProfileImage}}" class="width-30-px height-30-px border-radius-100p" (click)="ViewUserInformation(sender)"/>
+                        <img *ngIf="sender.ID == message.SenderID && sender.ProfileImage.length<=0?true:false" src="{{noImagePath}}" class="width-30-px height-30-px border-radius-100p" (click)="ViewUserInformation(sender)" />
+                    </span>
+                    <ion-card *ngIf="message.MessageType=='46a4d670-cda1-483c-a35a-1b7ac5111a5a'?true:false" class="primary-bg-color border-radius-10-px">
+                        <ion-card-content>
+                            <p class="fifth-text-color">{{message.Text}}</p>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card *ngIf="message.MessageType=='f7e61265-0ba9-4513-9993-870a57e2dbf2'?true:false" class="primary-bg-color border-radius-10-px">
+                        <ion-card-content>
+                            <img src="{{message.Text}}" class="height-100-px width-100-px" imageViewer/>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <ion-list>
+            <ion-row>
+                <ion-col col-2>
+                    <button ion-button clear *ngIf="!isShowMore" (click)="ToggleIsShowMore()">
+                        <ion-icon class="primary-text-color" name="md-more"></ion-icon>
+                    </button>
+                    <button ion-button class="float-left" clear *ngIf="isShowMore" (click)="ToggleIsShowMore()">
+                        <ion-icon class="primary-text-color" name="ios-more"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-8>
+                    <div class="float-left height-70-px" *ngIf="isShowMore">
+                        <button ion-button clear (click)="SendImageMessage()">
+                            <ion-icon class="primary-text-color" name="md-camera"></ion-icon>
+                        </button>
+                    </div>
+                    <ion-textarea *ngIf="!isShowMore" type="text" [(ngModel)]="messageInfo.Text" placeholder="Message" class="height-70-px border-radius-10-px float-left border-line-1px-secondary margin-top-5-px"></ion-textarea>
+                </ion-col>
+                <ion-col col-2 *ngIf="!isShowMore">
+                    <button ion-button class="primary-bg-color border-radius-100p margin-top-20-px" (click)="SendMessageText()">
+                        <ion-icon class="fifth-text-color" name="ios-send"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+    </ion-navbar>
+</ion-footer>

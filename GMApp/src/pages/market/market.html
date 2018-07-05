@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="OpenFilterPageEvent()">
+            <ion-icon class="primary-text-color font-size-30" name="ios-funnel"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <div *ngIf="isFetchingAds">
+        <p class="width-100-percent text-align-center">Fetching Ads please wait...</p>
+        <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+    </div>
+    <div *ngIf="!isFiltering">
+        <ion-card *ngFor="let ad of displayItems" class="primary-bg-color">
+            <button ion-button clear class="position-relative" (click)="AddToWishList(ad)">
+                <ion-icon class="font-size-20 fifth-text-color" name="md-bookmark"></ion-icon>
+            </button>
+            <ion-card-content (click)="ViewAdDetails(ad)">
+                <ion-slides>
+                    <ion-slide *ngFor="let image of ad.ItemImages">
+                        <img src="{{image.Source}}" class="height-300px width-100-percent" />
+                    </ion-slide>
+                </ion-slides>
+                <div class="position-relative transform-translate2d-205px z-index-100 sixth-bg-color width-100-px height-50-px border-radius-5-px">
+                    <p class="padding-top-5px fifth-text-color vertical-align-middle text-align-center font-size-25">{{ad.Price}}</p>
+                </div>
+                <div class="width-100-percent sixth-bg-color height-50-px border-radius-5-px">
+                    <h1 class="font-weight-bold fifth-text-color text-align-center padding-top-5px">{{ad.Title}}</h1>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngIf="isFiltering">
+        <ion-card *ngFor="let ad of filteredLists" (click)="ViewAdDetails(ad)">
+            <ion-card-content>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of ad.ItemImages">
+                        <img src="{{image.Source}}" class="height-300px width-100-percent" />
+                    </ion-slide>
+                </ion-slides>
+                <div class="position-relative transform-translate2d-205px z-index-100 sixth-bg-color width-100-px height-50-px border-radius-5-px">
+                    <p class="padding-top-5px fifth-text-color vertical-align-middle text-align-center font-size-25">{{ad.Price}}</p>
+                </div>
+                <div class="width-100-percent sixth-bg-color height-50-px border-radius-5-px">
+                    <h1 class="font-weight-bold fifth-text-color text-align-center padding-top-5px">{{ad.Title}}</h1>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <button ion-button clear (click)="GotoWishList()">
+            <ion-icon class="primary-text-color font-size-25" name="ios-bookmark"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-footer>

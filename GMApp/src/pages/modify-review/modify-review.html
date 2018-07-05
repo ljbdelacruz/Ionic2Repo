@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="fifth-text-color" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="SaveChanges()">
+                <ion-icon class="fifth-text-color" name="md-checkmark-circle-outline"></ion-icon>
+              </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div class="text-align-center">
+        <div *ngIf="starCount==1">
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+        </div>
+        <div *ngIf="starCount==2">
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+        </div>
+        <div *ngIf="starCount==3">
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+        </div>
+        <div *ngIf="starCount==4">
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+        </div>
+        <div *ngIf="starCount==5">
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+            <ion-icon class="sixth-text-color font-size-40" name="md-star"></ion-icon>
+        </div>
+    </div>
+
+    <ion-list>
+        <ion-item>
+            <ion-label>Rating</ion-label>
+            <ion-select [(ngModel)]="starCount">
+                <ion-option value="1">Poor</ion-option>
+                <ion-option value="2">Good</ion-option>
+                <ion-option value="3">Above Average</ion-option>
+                <ion-option value="4">Satisfactory</ion-option>
+                <ion-option value="5">Excellent</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-textarea class="height-200-px border-line-1px-secondary border-radius-10-px" [(ngModel)]="userReviewInfo.Comment" placeholder="Comment"></ion-textarea>
+</ion-content>

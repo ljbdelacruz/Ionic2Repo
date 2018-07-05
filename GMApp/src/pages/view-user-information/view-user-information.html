@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <div *ngIf="!isAdmin">
+            <button class="float-right" ion-button clear>
+                <ion-icon class="primary-text-color font-size-30" (click)="ViewMoreOptions($event)" name="md-settings"></ion-icon>
+            </button>
+        </div>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <ion-list>
+        <ion-row>
+            <ion-col col-12>
+                <ion-card (click)="ViewUserReviewContent()" class="primary-bg-color">
+                    <ion-card-title>
+                        <p class="margin-left-10 text-align-center fifth-text-color">Review</p>
+                    </ion-card-title>
+                    <ion-card-content>
+                        <p class="text-align-center">
+                            <ion-icon *ngFor="let star of userRevCountArray" class="font-size-40 fifth-text-color" name="md-star"></ion-icon>
+                            <ion-icon *ngFor="let star of unfilledRevCountArray" class="font-size-40 fifth-text-color" name="ios-star-outline"></ion-icon>
+                        </p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button class="primary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="ViewAds()">
+                            <p class="text-align-center">
+                                <ion-icon name="ios-basket" class="fifth-text-color font-size-30"></ion-icon>
+                                <br> Ads&nbsp;({{items.length}})
+                            </p>
+                        </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-navbar>
+        <img *ngIf="userInfo.ProfileImage.length>0?true:false" src="{{userInfo.ProfileImage}}" class="height-50-px width-50-px float-left border-radius-5-px" />
+        <img *ngIf="userInfo.ProfileImage.length<=0?true:false" src="{{noImagePath}}" class="height-50-px width-50-px float-left border-radius-5-px" />
+        <p class="primary-text-color margin-left-10">&nbsp;&nbsp;{{userInfo.Firstname}} {{userInfo.Lastname}}</p>
+    </ion-navbar>
+</ion-footer>

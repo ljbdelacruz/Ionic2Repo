@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="fifth-text-color" name="ios-arrow-back"></ion-icon>
+      </button>
+        <button class="float-right" ion-button clear (click)="InsertReport()">
+        <ion-icon class="fifth-text-color" name="md-checkmark-circle-outline"></ion-icon>
+      </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <p>Reporting Someone to admin means this person has scammed or committed a serious criminal offense to the community</p>
+    <ion-textarea class="border-line-1px-secondary border-radius-10-px height-200-px" placeholder="Please elaborate the reason" [(ngModel)]="reason"></ion-textarea>
+</ion-content>

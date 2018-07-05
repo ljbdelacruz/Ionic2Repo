@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <div *ngIf="mode!=3?true:false">
+            <button *ngIf="!isSelectedCategory" class="float-left" ion-button clear (click)="Close()">
+                <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+            </button>
+            <button *ngIf="isSelectedCategory" class="float-left" ion-button clear (click)="Cancel()">
+                <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+            </button>
+        </div>
+        <div *ngIf="mode==2?true:false">
+            <button ion-button clear class="float-right" (click)="AddEvent()">
+                <ion-icon class="primary-text-color font-size-30" name="md-add"></ion-icon>
+            </button>
+        </div>
+        <div *ngIf="mode==3?true:false">
+            <button ion-button clear (click)="CancelMode3()">
+                <ion-icon class="primary-text-color font-size-30" name="md-close"></ion-icon>
+            </button>
+            <button class="float-right" ion-button clear (click)="SaveChanges()">
+                <ion-icon class="primary-text-color font-size-30" name="md-checkmark-circle-outline"></ion-icon>
+            </button>
+        </div>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <div *ngIf="mode==1?true:false">
+        <ion-list *ngIf="!isSelectedCategory">
+            <ion-item no-lines class="primary-bg-color margin-top-5-px border-radius-5-px" *ngFor="let category of categories" (click)="SelectCategory(category)">
+                <p class="fifth-text-color">{{category.Name}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngIf="isSelectedCategory">
+            <ion-item no-lines class="primary-bg-color margin-top-5-px border-radius-5-px" *ngFor="let sub of subCategories" (click)="SelectSubCategory(sub)">
+                <p class="fifth-text-color">{{sub.Name}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="mode==2?true:false">
+        <ion-list *ngIf="!isSelectedCategory">
+            <ion-item no-lines class="primary-bg-color margin-top-5-px border-radius-5-px" *ngFor="let category of categories">
+                <button ion-button clear class="float-right" (click)="MoreCatPopOver($event, category)">
+                    <ion-icon class="fifth-text-color font-size-30" name="md-more"></ion-icon>
+                </button>
+                <p class="float-left">{{category.Name}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngIf="isSelectedCategory">
+            <ion-item *ngFor="let sub of selectedCategory.SubCategories">
+                <button ion-button clear class="float-right" (click)="MoreSubCatPopOver($event, sub)">
+                    <ion-icon class="fifth-text-color font-size-30" name="md-more"></ion-icon>
+                </button>
+                <p class="float-left">{{sub.Name}}</p>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="mode==3?true:false">
+        <ion-input *ngIf="valueOption==1?true:false" type="text" placeholder="Name" [(ngModel)]="selectedCategory.Name"></ion-input>
+        <ion-input *ngIf="valueOption==4?true:false" type="text" placeholder="Name" [(ngModel)]="selectedSub.Name"></ion-input>
+    </div>
+</ion-content>

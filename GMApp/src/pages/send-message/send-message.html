@@ -1,0 +1,16 @@
+<ion-content padding>
+    <button ion-button clear (click)="Close()">
+        <ion-icon class="sixth-text-color" name="ios-arrow-back"></ion-icon>
+    </button>
+    <div class="width-100-percent border-radius-5-px">
+
+        <ion-scroll *ngIf="!isMostViewedLoading" scrollX="true">
+            <button ion-button class="height-30-px scroll-item selectable-icon font-size-15 fifth-text-color" (click)="PreselectMessage('is this available?')">is this available?</button>
+            <button ion-button class="height-30-px scroll-item selectable-icon font-size-15 fifth-text-color" (click)="PreselectMessage('last price?')">last price?</button>
+            <button ion-button class="height-30-px scroll-item selectable-icon font-size-15 fifth-text-color" (click)="PreselectMessage('how much?')">how much?</button>
+        </ion-scroll>
+    </div>
+    <ion-textarea placeholder="Message" [(ngModel)]="message" class="height-100-px border-line-1px-secondary border-radius-5-px">
+    </ion-textarea>
+    <button ion-button (click)="Send()">Send</button>
+</ion-content>

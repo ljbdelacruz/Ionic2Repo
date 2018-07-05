@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button class="float-right" ion-button clear (click)="AddAdEvent()" *ngIf="isOwner">
+            <ion-icon class="primary-text-color font-size-30" name="md-add"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="tertiary-bg-color">
+    <div *ngIf="!isSuccessLoading">
+        <p class="width-100-percent text-align-center primary-text-color">Loading Ads please wait...</p>
+        <ion-spinner class="width-100-percent" name="bubbles"></ion-spinner>
+    </div>
+    <div *ngIf="segmentSelected=='selling'?true:false">
+        <p *ngIf="items.length<=0 && isSuccessLoading?true:false" class="font-size-20 text-align-center primary-text-color">No ads available</p>
+        <ion-card *ngFor="let ad of items" class="primary-bg-color">
+            <ion-card-title>
+                <button ion-button clear class="float-right fifth-text-color font-size-25" (click)="MoreOptionEvent($event, ad)">
+                    <ion-icon name="ios-more"></ion-icon>
+                </button>
+            </ion-card-title>
+            <ion-card-content (click)="ViewAdDetails(ad)">
+                <ion-slides>
+                    <ion-slide *ngFor="let image of ad.ItemImages">
+                        <img src="{{image.Source}}" class="height-300px width-100-percent" />
+                    </ion-slide>
+                </ion-slides>
+                <div class="position-relative transform-translate2d-205px z-index-100 sixth-bg-color width-100-px height-50-px border-radius-5-px">
+                    <p class="padding-top-5px fifth-text-color vertical-align-middle text-align-center font-size-25">{{ad.Price}}</p>
+                </div>
+                <div>
+                    <h1 class="font-weight-bold fifth-text-color">{{ad.Title}}</h1>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngIf="segmentSelected=='sold'?true:false">
+        <p *ngIf="soldItems.length<=0?true:false" class="font-size-20 text-align-center primary-text-color">No ads available</p>
+        <ion-card *ngFor="let ad of soldItems" class="primary-bg-color">
+            <ion-card-title>
+                <button ion-button clear class="float-right fifth-text-color font-size-25" (click)="SoldMoreOptionEvent($event, ad)">
+                    <ion-icon name="ios-more"></ion-icon>
+                </button>
+            </ion-card-title>
+            <ion-card-content (click)="ViewAdDetails(ad)">
+                <ion-slides>
+                    <ion-slide *ngFor="let image of ad.ItemImages">
+                        <img src="{{image.Source}}" class="height-300px width-100-percent" />
+                    </ion-slide>
+                </ion-slides>
+                <div class="position-relative transform-translate2d-205px z-index-100 sixth-bg-color width-100-px height-50-px border-radius-5-px">
+                    <p class="padding-top-5px fifth-text-color vertical-align-middle text-align-center font-size-25">{{ad.Price}}</p>
+                </div>
+                <div>
+                    <h1 class="font-weight-bold fifth-text-color">{{ad.Title}}</h1>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>
+<ion-footer *ngIf="mode==1?true:false">
+    <ion-navbar>
+        <ion-segment [(ngModel)]="segmentSelected" color="primarybg">
+            <ion-segment-button value="selling">
+                <ion-icon class="fifth-text-color font-size-20" name="md-apps"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="sold">
+                <ion-icon class="fifth-text-color font-size-20" name="md-cash"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-navbar>
+</ion-footer>

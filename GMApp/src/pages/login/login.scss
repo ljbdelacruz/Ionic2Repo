@@ -1,0 +1,12 @@
+page-login {
+    .text-input::-moz-placeholder {
+        color: #68697a;
+    }
+    .text-input:-ms-input-placeholder {
+        color: #68697a;
+    }
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: #68697a;
+    }
+}

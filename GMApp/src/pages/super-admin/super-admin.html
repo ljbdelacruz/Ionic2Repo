@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()">
+        <ion-icon class="fifth-text-color" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-row>
+            <ion-col col-6>
+                <ion-card (click)="EditCategoriesEvent()">
+                    <ion-card-title>
+                        <p>Categories</p>
+                    </ion-card-title>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col col-6>
+                <ion-card>
+                    <ion-card-title>
+                        <p>Users</p>
+                    </ion-card-title>
+                    <ion-card-content>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-list>
+</ion-content>
