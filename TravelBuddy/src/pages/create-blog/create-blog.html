@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button ion-button clear class="third-text-color float-left" (click)="Close()">
+          <ion-icon name="ios-arrow-back-outline" style="zoom:1;"></ion-icon>
+      </button>
+      <button ion-button clear class="third-text-color float-right" (click)="CreateBlog()">
+          <ion-icon name="md-checkmark-circle-outline" style="zoom:1;"></ion-icon>
+      </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-item>
+        <ion-label>Select Country Location</ion-label>
+        <ion-select [(ngModel)]="vlogConnection.Country">
+          <ion-option *ngFor="let country of countries" value="{{country.Name}}">{{country.Name}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-input [(ngModel)]="vlogConnection.Title" type="text" class="secondary-text-color background-color-transparent border-line-bottom-1px-third secondary-text-color" placeholder="Blog Title"></ion-input>
+    <!--Displaying contents-->
+    <div *ngFor="let item of contents">
+      <div *ngIf="item.Type.Description == 'Plain Text'?true:false">
+        <p>{{item.Text}}</p>
+      </div>
+      <div *ngIf="item.Type.Description == 'Maps'?true:false">
+        <agm-map *ngIf="item.Location!=null?true:false" [latitude]="item.Location.latitude" [longitude]="item.Location.longitude" [zoom]="3">
+          <agm-marker [latitude]="item.Location.latitude" [longitude]="item.Location.longitude">
+            <agm-info-window [isOpen]="false">
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+      <div *ngIf="item.Type.Description== 'Title'?true:false">
+        <h1>{{item.Text}}</h1>
+      </div>
+      <div *ngIf="item.Type.Description == 'Carousel Image'?true:false">
+        <ion-slides>
+          <ion-slide *ngFor="let image of item.Media">
+            <img src="{{image.Source}}" class="width-100-per height-300px"/>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+    <!--Adding Contents-->
+    <button ion-button class="width-100-per height-50-px" (click)="ShowComponents()" *ngIf="!isEditMode">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+    <div *ngIf="Segment != null?true:false">
+      <div *ngIf="Segment.Type.Description == 'Plain Text'?true:false">
+        <ion-textarea class="border-line-1px-primary" [(ngModel)]="Segment.Text"  placeholder="Plain Text"></ion-textarea>
+      </div>
+      <div *ngIf="Segment.Type.Description == 'Maps'?true:false">
+          <agm-map *ngIf="Segment.Location!=null?true:false" [latitude]="Segment.Location.latitude" [longitude]="Segment.Location.longitude" [zoom]="3"  (mapClick)="MovePoint($event)">
+              <agm-marker [latitude]="Segment.Location.latitude" [longitude]="Segment.Location.longitude">
+                <agm-info-window [isOpen]="false">
+                </agm-info-window>
+              </agm-marker>
+          </agm-map>
+      </div>
+      <div *ngIf="Segment.Type.Description == 'Title'?true:false">
+        <ion-input [(ngModel)]="Segment.Text" placeholder="Title"></ion-input>
+      </div>
+      <div *ngIf="Segment.Type.Description == 'Carousel Image'?true:false">
+        <ion-slides style="width:100%; height:300px;">
+          <ion-slide *ngFor="let image of Segment.Media">
+            <img src="{{image.Source}}" class="width-100-per height-300px"/>
+          </ion-slide>
+          <ion-slide>
+            <p>Upload Image</p>
+            <input type="file" (change)="SelectFile($event)"/>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <button ion-button (click)="SaveChange()" >Save</button>
+      <button ion-button (click)="Cancel()">Cancel</button>
+    </div>
+</ion-content>

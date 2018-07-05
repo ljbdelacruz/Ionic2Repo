@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button (click)="LoginOnClick()" ion-button clear icon-only class="float-right third-text-color">
+        <ion-icon class="third-text-color" name="md-log-in"></ion-icon>
+      </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-input [(ngModel)]="userDetail.EmailAddress" type="text" class="secondary-text-color background-color-transparent border-line-bottom-1px-third secondary-text-color" placeholder="Email"></ion-input>
+  <ion-input [(ngModel)]="userDetail.Password" type="password" class="secondary-text-color background-color-transparent border-line-bottom-1px-third secondary-text-color margin-top-20px" placeholder="Password"></ion-input>
+</ion-content>

@@ -1,0 +1,17 @@
+<!--
+  Generated template for the ChooseComponentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="ItemSelected(item)">
+          {{ item.Description }}
+        </button>  
+    </ion-list>
+</ion-content>

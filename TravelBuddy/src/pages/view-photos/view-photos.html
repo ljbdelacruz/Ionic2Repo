@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button clear icon-only class="float-left third-text-color" (click)="Close()">
+      <ion-icon name="ios-arrow-back-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides>
+    <ion-slide *ngFor="let photo of photos">
+        <img src="{{photo.Source}}" class="width-100-per height-100-per" />
+    </ion-slide>
+  </ion-slides>
+</ion-content>

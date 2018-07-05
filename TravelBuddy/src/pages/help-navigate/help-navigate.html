@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button clear icon-only class="float-left third-text-color" (click)="Close()">
+      <ion-icon name="ios-arrow-back-outline"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <agm-map [latitude]="position.latitude" [longitude]="position.longitude" [zoom]="5">
+    <agm-marker [latitude]="myPosition.latitude" [longitude]="myPosition.longitude">
+      <agm-info-window [isOpen]="true">
+        <p>My Location</p>
+      </agm-info-window>      
+    </agm-marker>
+    <agm-marker [latitude]="position.latitude" [longitude]="position.longitude">
+      <agm-info-window [isOpen]="true">
+        <p>Destination</p>
+      </agm-info-window>      
+    </agm-marker>
+  </agm-map>
+</ion-content>

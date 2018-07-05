@@ -1,0 +1,56 @@
+<ion-menu [content]="mycontent" class="tertiary-bg-color" side="left" type="overlay">
+    <ion-content class="third-bg-color" >
+        <ion-list class="margin-top-40px">
+            <button ion-item no-lines  class="third-text-color third-bg-color" (click)="ViewProfile()">
+                <ion-icon name="ios-contact" style="zoom:1;"></ion-icon> View Profile
+            </button>
+            <button ion-item no-lines  class="third-text-color third-bg-color" (click)="Logout()">
+                <ion-icon name="ios-log-out" style="zoom:1;"></ion-icon> Logout
+            </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button clear icon-only class="float-left third-text-color" (click)="ToggleMenu()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button clear icon-only class="float-right third-text-color" (click)="NotificationsEvent()">
+        <ion-icon name="md-notifications-outline"></ion-icon>
+      </button>
+    <ion-searchbar [showCancelButton]="true" placeholder="Search" debounce="2000" (ionInput)="OnSearchEvent($event)"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding #mycontent>
+    <ion-spinner *ngIf="isLoadingPost" class="width-100-per"></ion-spinner>
+    <div *ngIf="posts.length > 0?true:false">
+      <ion-card *ngFor="let post of posts">
+        <div (click)="ViewUserProfile(post.Owner)">
+          <img class="float-left" src="{{post.Owner.profileImage}}" style="width:50px; height:50px; border-radius:100%;" />
+          <p class="float-left">&nbsp;&nbsp;&nbsp;&nbsp;{{post.Owner.Name}}</p>  
+        </div>
+        <ion-card-title class="clear">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;{{post.Title}}</p>
+        </ion-card-title>
+        <ion-card-content>
+          <img src="/assets/imgs/logo.png" style="width:100%; height:200px;" />
+          <button ion-button style="position:absolute; left:35%; transform:translateY(-50px)" (click)="ReadMore(post)">Read More</button>
+        </ion-card-content>
+      </ion-card>
+      <button ion-button clear class="width-100-per">Load More...</button>
+    </div>
+    <div *ngIf="posts.length <= 0?true:false">
+      <p class="secondary-text-color text-align-center">No Content Available</p>
+    </div>
+  <!-- <ion-card>
+    <img class="float-left" src="./assets/imgs/logo.png" style="width:50px; height:50px; border-radius:100%;" />
+    <p class="float-left">&nbsp;&nbsp;&nbsp;&nbsp;Lainel John Dela Cruz</p>
+    <ion-card-title class="clear">
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;How to get Around Japan Tricks and tips</p>
+    </ion-card-title>
+    <ion-card-content>
+        <img src="/assets/imgs/logo.png" style="width:100%; height:200px;" />
+        <button ion-button style="position:absolute; left:35%; transform:translateY(-50px)">Read More</button>
+    </ion-card-content>
+  </ion-card> -->
+</ion-content>

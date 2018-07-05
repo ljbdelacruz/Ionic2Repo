@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>profileSetting</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-row>
+      <ion-col col-12>Profile Picture</ion-col>
+      <ion-col col-12>
+        <!-- <button ion-button clear *ngIf="photo==null?true:false" class="width-50-px height-50-px border-line-1px-primary " (click)="PickImage()">
+          <ion-icon name="md-cloud-upload"></ion-icon>
+        </button> -->
+        <input *ngIf="file==null?true:false" type="file" (change)="SelectFile($event)"/>
+        <div *ngIf="photo!=null">
+          <img src="{{photo}}" class="width-100-px height-100-px"/> 
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
