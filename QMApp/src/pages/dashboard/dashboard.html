@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-right" ion-button clear (click)="TogglePopover($event)">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <h1 class="primary-text-color font-amatic font-size-50">Welcome&nbsp;{{userInfo.Firstname}}!</h1>
+    <ion-grid class="margin-top-100-px">
+        <ion-row>
+            <ion-col col-9>
+                <ion-input type="text" class="border-line-bottom-1px-secondary primary-text-color" placeholder="Quiz Code" [(ngModel)]="qcInput"></ion-input>
+            </ion-col>
+            <ion-col col-3>
+                <button ion-button class="width-98-percent tertiary-bg-color" (click)="CheckCode()">
+                    <ion-icon name="md-arrow-forward" class=""></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button class="tertiary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="ViewMyQuestionaires()">
+                    <p class="text-align-center">
+                        <ion-icon name="md-list" class="font-size-30"></ion-icon>
+                        <br> Questionaires
+                    </p>
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button class="tertiary-bg-color border-radius border-radius-100p height-120-px width-120-px" (click)="ViewMyTestResults()">
+                    <p class="text-align-center">
+                        <ion-icon name="md-analytics" class="font-size-30"></ion-icon>
+                        <br> My Results
+                    </p>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

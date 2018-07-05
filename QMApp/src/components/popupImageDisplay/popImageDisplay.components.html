@@ -1,0 +1,9 @@
+<ion-list class="tertiary-bg-color">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4 *ngFor="let img of groupData">
+                <img src="{{imgURL}}{{img.Image.Source}}" class="height-100-px width-100-percent" imageViewer/>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-list>

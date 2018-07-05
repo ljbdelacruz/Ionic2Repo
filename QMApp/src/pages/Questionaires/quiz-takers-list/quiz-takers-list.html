@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-list>
+        <div *ngIf="isFetchingData">
+            <p class="text-align-center primary-text-color">Fetching data please wait...</p>
+            <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+        </div>
+        <ion-item no-lines *ngFor="let qt of quizTakers" class="tertiary-bg-color margin-top-10-px">
+            <p item-start class="fifth-text-color">{{qt.UserInfo.EmailAddress}}
+                <br>Score:&nbsp;{{qt.TotalPoints}}
+                <br>Test Taken At: {{qt.CreatedAt}}
+            </p>
+            <button ion-button clear item-end>
+                <ion-icon name="ios-more" class="fifth-text-color font-size-30" (click)="TogglePopover($event, qt)"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

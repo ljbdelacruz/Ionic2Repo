@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button *ngIf="mode==0?true:false" class="float-right" ion-button clear (click)="CreateNewTemplate()">
+            <ion-icon class="fifth-text-color font-size-30" name="md-add"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <div *ngIf="isFetchingData">
+        <p class="text-align-center primary-text-color">Fetching data please wait...</p>
+        <ion-spinner class="width-100-percent fifth-text-color" name="bubbles"></ion-spinner>
+    </div>
+    <ion-item-group>
+        <ion-item-divider class="secondary-bg-color">
+            <p class="fifth-text-color">Questionaires</p>
+        </ion-item-divider>
+        <ion-item no-lines *ngFor="let quiz of quizes" class="tertiary-bg-color">
+            <p item-start class="fifth-text-color word-break overflow-hidden max-width-80p width-80-percent">{{quiz.Name}}
+                <br>
+                <span *ngIf="mode==1?true:false">Score:&nbsp;{{quiz.QuizTaker.TotalPoints}}/{{quiz.TotalPoints}}</span>
+            </p>
+            <button item-end ion-button clear (click)="TogglePopover($event, quiz)">
+                <ion-icon class="fifth-text-color font-size-30" name="ios-more"></ion-icon>
+            </button>
+        </ion-item>
+        <ion-item-divider class="secondary-bg-color margin-top-10-px">
+            <p class="fifth-text-color">Surveys</p>
+        </ion-item-divider>
+        <ion-item no-lines *ngFor="let survey of surveys" class="tertiary-bg-color">
+            <p item-start class="fifth-text-color word-break overflow-hidden max-width-80p width-80-percent">{{survey.Name}}</p>
+            <button item-end ion-button clear (click)="TogglePopover($event, survey)">
+                <ion-icon class="fifth-text-color font-size-30" name="ios-more"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-item-group>
+</ion-content>

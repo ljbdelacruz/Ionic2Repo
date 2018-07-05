@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-card>
+        <ion-card-content class="tertiary-bg-color">
+            <p class="fifth-text-color font-size-20">{{quizInfo.Name}}</p>
+            <p class="fifth-text-color">Quiz Code:&nbsp;{{quizInfo.QuizCode}}</p>
+        </ion-card-content>
+    </ion-card>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button (click)="ViewQuizTakers()" class="width-100-percent height-120-px tertiary-bg-color">
+                    <p class="text-align-center">
+                        <ion-icon class="fonts-size-40 fifth-text-color" name="md-people"></ion-icon>
+                        <br>
+                        Quiz Takers</p>
+                </button>
+            </ion-col>
+            <ion-col col-6 *ngIf="quizInfo.Status=='a69d7206-4bd6-4b79-9460-e38ed713efe0'">
+                <button ion-button (click)="ViewSurveyOverview()" class="width-100-percent height-120-px tertiary-bg-color">
+                        <p class="text-align-center"><ion-icon class="fonts-size-40 fifth-text-color" name="md-stats"></ion-icon>
+                        <br>
+                        Survey Overview</p>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

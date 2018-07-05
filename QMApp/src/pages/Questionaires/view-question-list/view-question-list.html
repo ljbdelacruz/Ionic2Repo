@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-card class="tertiary-bg-color">
+        <ion-card-content>
+            <button ion-button clear class="float-right" (click)="EditQuizInfo()">
+                <ion-icon name="md-create" class="fifth-text-color font-size-30"></ion-icon>
+            </button>
+            <p class="fifth-text-color">{{quizInfo.Name}}</p>
+            <p class="fifth-text-color">{{quizInfo.QuizCode}}</p>
+        </ion-card-content>
+    </ion-card>
+    <button class="width-100-percent tertiary-bg-color margin-top-10-px" (click)="CreateQuestion()">
+        <ion-icon name="md-add" class="font-size-30 fifth-text-color"></ion-icon>
+    </button>
+    <div *ngIf="isFetchingData">
+        <p class="text-align-center primary-text-color">Fetching data please wait...</p>
+        <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+    </div>
+    <ion-list class="margin-top-20-px">
+        <ion-item no-lines *ngFor="let quest of questions" class="tertiary-bg-color margin-top-5-px">
+            <p item-start class="word-break overflow-hidden max-width-80p width-80-percent fifth-text-color">{{quest.Questions}}</p>
+            <button item-end ion-button clear (click)="TogglePopover($event, quest)" class="float-right">
+                <ion-icon class="fifth-text-color font-size-30" name="ios-more"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

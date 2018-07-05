@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button class="tertiary-bg-color border-radius border-radius-100p height-120-px width-120-px " (click)="CreateQuestions()">
+                            <p class="text-align-center">
+                                <ion-icon name="md-paper" class="font-size-30"></ion-icon>
+                                <br> Questionaire
+                            </p>
+                        </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button class="tertiary-bg-color border-radius border-radius-100p height-120-px width-120-px" (click)="CreateSurvey()">
+                            <p class="text-align-center">
+                                <ion-icon name="md-analytics" class="font-size-30"></ion-icon>
+                                <br> Survey
+                            </p>
+                        </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

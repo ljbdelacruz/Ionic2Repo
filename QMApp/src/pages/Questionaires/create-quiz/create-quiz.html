@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-input type="text" placeholder="Title" [(ngModel)]="model.Name" class="border-line-bottom-1px-secondary primary-text-color"></ion-input>
+    <button ion-button *ngIf="mode==0?true:false" class="width-100-percent margin-top-10-px fifth-text-color tertiary-bg-color" (click)="CreateQuiz()">ADD</button>
+    <button ion-button *ngIf="mode==1?true:false" class="width-100-percent margin-top-10-px fifth-text-color tertiary-bg-color" (click)="CreateQuiz()">Update</button>
+</ion-content>

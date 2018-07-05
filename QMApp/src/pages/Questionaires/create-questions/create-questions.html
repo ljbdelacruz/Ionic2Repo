@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button class="float-left" ion-button clear (click)="Close()">
+            <ion-icon class="fifth-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+        <button ion-button clear (click)="SaveChanges()" class="float-right">
+            <ion-icon name="md-checkmark-circle-outline" class="fifth-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <ion-card class="tertiary-bg-color">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-4 *ngFor="let img of newQuestion.QuizImages">
+                        <img (click)="RemoveImage(img)" src="{{imgURL}}{{img.Image.Source}}" class="height-100-px width-100-px" />
+                    </ion-col>
+                    <ion-col col-12>
+                        <upload-single-image1 [isdisplay]="false" [oid]="newQuestion.ID" [source]="''" [path]="path" (imageUploadedEvent)="UploadQuesImage($event)"></upload-single-image1>
+                        <!-- <upload-single-image [isdisplay]="false" [oid]="newQuestion.ID" [source]="''" [path]="path" (imageUploadedEvent)="UploadQuesImage($event)"></upload-single-image> -->
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-input type="text" placeholder="Question" [(ngModel)]="newQuestion.Questions" class="border-line-bottom-1px-fifth fifth-text-color"></ion-input>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <ion-input type="number" placeholder="Points Question" [(ngModel)]="newQuestion.Points" class="border-line-bottom-1px-fifth margin-top-10-px fifth-text-color"></ion-input>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-item class="margin-top-10-px tertiary-bg-color">
+                            <ion-select [(ngModel)]="newQuestion.Status" class="border-line-1px-fifth margin-top-10-px width-100-percent max-width-100p border-radius-5-px fifth-text-color">
+                                <ion-option value="4705bd60-d2e5-4e69-9fa6-1fe85e3c5e6f">Multiple Choice</ion-option>
+                                <ion-option value="ab075d70-d51b-4d75-95fe-123478bd2a48">Essay</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 *ngIf="newQuestion.Status == '4705bd60-d2e5-4e69-9fa6-1fe85e3c5e6f'">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-4 *ngFor="let img of newChoice.Images">
+                                    <img (click)="RemoveChoiceImage(img)" src="{{imgURL}}{{img.Image.Source}}" class="height-100-px width-100-px" />
+                                </ion-col>
+                                <ion-col col-12>
+                                    <upload-single-image1 [isdisplay]="false" [oid]="newChoice.ID" [source]="''" [path]="path" (imageUploadedEvent)="UploadQuesAnsImage($event)"></upload-single-image1>
+                                    <!-- <upload-single-image [isdisplay]="false" [oid]="newChoice.ID" [source]="''" [path]="path" (imageUploadedEvent)="UploadQuesAnsImage($event)"></upload-single-image> -->
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div *ngIf="newQuestion.Status == '4705bd60-d2e5-4e69-9fa6-1fe85e3c5e6f'" class="margin-top-10-px">
+                <ion-input type="text" placeholder="Choice" [(ngModel)]="newChoice.Description" class="width-100-percent border-line-bottom-1px-fifth fifth-text-color"></ion-input>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item class="margin-top-5-px tertiary-bg-color">
+                                <ion-label class="fifth-text-color">Correct Answer?</ion-label>
+                                <ion-checkbox [(ngModel)]="newChoice.isCorrect" color="fourthBG"></ion-checkbox>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button class="width-100-percent fourth-bg-color" (click)="AddChoice()">
+                                <ion-icon name="md-add" class="primary-text-color font-size-30"></ion-icon>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-12 *ngFor="let choice of choices">
+                            <ion-item class="tertiary-bg-color margin-top-5-px border-line-1px-fifth border-radius-5-px">
+                                <p item-start class="fifth-text-color">{{choice.Description}}</p>
+                                <ion-icon *ngIf="choice.isCorrect" name="md-checkmark" class="fifth-text-color"></ion-icon>
+                                <button ion-button item-end (click)="RemoveChoice(choice)" class="fourth-bg-color">
+                                    <ion-icon class="primary-text-color" name="md-close"></ion-icon>
+                                </button>
+                            </ion-item>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col col-6 *ngFor="let img of choice.Images">
+                                        <img src="{{imgURL}}{{img.Image.Source}}" class="height-100-px width-100-px" />
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

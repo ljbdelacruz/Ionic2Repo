@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button *ngIf="mode==0?false:true" ion-button clear class="float-left" (click)="Close()">
+            <ion-icon name="ios-arrow-back" class="fifth-text-color font-size-30"></ion-icon>
+        </button>
+        <button *ngIf="mode==2?false:true" ion-button clear (click)="SubmitAnswers()" class="float-right">
+            <ion-icon name="md-checkmark-circle-outline" class="fifth-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <p *ngIf="mode==2?true:false" class="primary-text-color font-size-20">Total Points:&nbsp;{{quizInfo.QuizTaker.TotalPoints}}</p>
+    <p *ngIf="mode==0?true:false" class="primary-text-color font-size-20">Swipe left for next question</p>
+    <ion-slides>
+        <ion-slide *ngFor="let ques of questions">
+            <p class="primary-text-color">{{ques.Questions}}</p>
+            <button ion-button clear (click)="DisplayGroupingImg($event, ques.QuizImages)">
+                <p class="primary-text-color">See Attachments...</p>
+            </button>
+            <div *ngIf="mode==0?true:false">
+                <p class="primary-text-color">Point: {{ques.Points}}</p>
+                <div *ngIf="ques.Status=='4705bd60-d2e5-4e69-9fa6-1fe85e3c5e6f'" class="width-98-percent">
+                    <ion-list radio-group [(ngModel)]="ques.UserAnswer.QuizAnswerID" class="width-98-percent">
+                        <ion-item *ngFor="let choice of ques.Choices" class="tertiary-bg-color">
+                            <ion-label class="fifth-text-color">{{choice.Description}}</ion-label>
+                            <button item-content (click)="DisplayGroupingImg($event, choice.Images)" item-content clear ion-button *ngIf="choice.Images.length > 0?true:false">
+                                    <ion-icon class="fifth-text-color font-size-30" name="ios-more" ></ion-icon>
+                            </button>
+                            <ion-radio color="fourthBG" value="{{choice.ID}}"></ion-radio>
+                        </ion-item>
+                    </ion-list>
+                </div>
+                <div *ngIf="ques.Status == 'ab075d70-d51b-4d75-95fe-123478bd2a48'" class="width-98-percent">
+                    <ion-textarea [(ngModel)]="ques.UserAnswer.OtherAnswer" placeholder="Answer" class="height-70-px border-line-1px-secondary primary-text-color border-radius-5-px"></ion-textarea>
+                </div>
+            </div>
+            <div *ngIf="mode!=0?true:false">
+                <p class="primary-text-color">Earned Point: {{ques.UserAnswer.Points}}/{{ques.Points}}</p>
+                <div *ngIf="ques.Status=='4705bd60-d2e5-4e69-9fa6-1fe85e3c5e6f'">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-12 *ngFor="let choice of ques.Choices" class="tertiary-bg-color margin-top-5-px border-radius-5-px">
+                                <ion-item no-lines class="tertiary-bg-color">
+                                    <ion-label item-start class="fifth-text-color">{{choice.Description}}</ion-label>
+                                    <!-- View choice.Images Content -->
+                                    <button (click)="DisplayGroupingImg($event, choice.Images)" item-content clear ion-button *ngIf="choice.Images.length > 0?true:false">
+                                        <ion-icon class="fifth-text-color font-size-30" name="ios-more" ></ion-icon>
+                                    </button>
+                                    <ion-icon class="fifth-text-color" item-end name="md-checkmark" *ngIf="choice.ID == ques.UserAnswer.QuizAnswerID"></ion-icon>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <div *ngIf="ques.Status == 'ab075d70-d51b-4d75-95fe-123478bd2a48'">
+                    <p class="border-line-bottom-1px-secondary primary-text-color "><span *ngIf="ques.UserAnswer.OtherAnswer.length<=0">No Answer</span>{{ques.UserAnswer.OtherAnswer}}</p>
+                    <ion-input class="primary-text-color border-line-bottom-1px-secondary" *ngIf="mode==1?true:false" type="number" [(ngModel)]="ques.UserAnswer.Points"></ion-input>
+                    <button class="tertiary-bg-color margin-top-10-px" *ngIf="mode==1?true:false" ion-button (click)="UpdateScore(ques.UserAnswer)">Update</button>
+                </div>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

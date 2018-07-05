@@ -1,0 +1,7 @@
+<ion-content padding class="fourth-bg-color">
+    <ion-img src="assets/imgs/front.png" class="height-200-px width-100-percent"></ion-img>
+    <ion-input type="text" placeholder="Email Address" [(ngModel)]="userInput.EmailAddress" class="border-line-bottom-1px-secondary primary-text-color margin-top-20-px"></ion-input>
+    <ion-input type="password" placeholder="Password" [(ngModel)]="userInput.Password" class="border-line-bottom-1px-secondary primary-text-color"></ion-input>
+    <button ion-button (click)="Login()" class="width-98-percent tertiary-bg-color margin-top-100-px">LOGIN</button>
+    <button ion-button class="width-98-percent tertiary-bg-color" (click)="GotoSignup()">SIGN UP</button>
+</ion-content>

@@ -1,0 +1,13 @@
+<!-- Generated template for the UploadSingleImage1Component component -->
+<!--Input type uploading for web testing-->
+<div>
+    <ion-grid>
+        <ion-col col-12 *ngIf="isdisplay">
+            <ion-img class="height-70-px width-70-px" *ngIf="source.length>0?true:false" src="{{url}}{{source}}"></ion-img>
+            <ion-img class="height-70-px width-70-px" *ngIf="source.length<=0?true:false" src="{{noImage}}"></ion-img>
+        </ion-col>
+        <ion-col col-12>
+            <input type="file" (change)="onFileSelected($event)">
+        </ion-col>
+    </ion-grid>
+</div>
