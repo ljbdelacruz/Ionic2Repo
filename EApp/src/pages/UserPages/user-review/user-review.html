@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()" class="z-index-100">
+        <ion-icon name="ios-arrow-back-outline" class="primary-text-color font-size-40"></ion-icon>
+      </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <p class="text-align-center" *ngIf="reviews.length<=0">No Reviews</p>
+    <div *ngIf="isLoading">
+        <p class="width-100-percent text-align-center fifth-text-color">Processing please wait...</p>
+        <ion-spinner class="width-100-percent " name="bubbles"></ion-spinner>
+    </div>
+    <ion-card *ngFor="let review of reviews">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-2>
+                        <ion-img src="{{review.UserInfo.ProfileImage}}"></ion-img>
+                    </ion-col>
+                    <ion-col col-10>
+                        <p>{{review.UserInfo.EmailAddress}}</p>
+                    </ion-col>
+                    <ion-col col-12>
+                        <ion-icon class="primary-text-color font-size-20" name="star" *ngIf="review.Stars > 0"></ion-icon>
+                        <ion-icon class="primary-text-color font-size-20" name="star" *ngIf="review.Stars > 1"></ion-icon>
+                        <ion-icon class="primary-text-color font-size-20" name="star" *ngIf="review.Stars > 2"></ion-icon>
+                        <ion-icon class="primary-text-color font-size-20" name="star" *ngIf="review.Stars > 3"></ion-icon>
+                        <ion-icon class="primary-text-color font-size-20" name="star" *ngIf="review.Stars > 4"></ion-icon>
+                    </ion-col>
+                    <ion-col col-12>
+                        <p>{{review.Comment}}</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+    <!--Admin Mode-->
+    <div *ngIf="mode==0?true:false"></div>
+    <!--User Creating Review-->
+    <div *ngIf="mode==1?true:false"></div>
+</ion-content>
+<ion-footer *ngIf="mode==1?true:false">
+    <ion-navbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-item>
+                        <ion-label>Rating</ion-label>
+                        <ion-select [(ngModel)]="userReviewModel.Stars">
+                            <ion-option value="1">Poor</ion-option>
+                            <ion-option value="2">Good</ion-option>
+                            <ion-option value="3">Above Average</ion-option>
+                            <ion-option value="4">Satisfactory</ion-option>
+                            <ion-option value="5">Excellent</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-9>
+                    <ion-textarea placeholder="Review" [(ngModel)]="userReviewModel.Comment" class="height-70-px width-100-percent"></ion-textarea>
+                </ion-col>
+                <ion-col col-3>
+                    <button ion-button clear (click)="CreateReviewEvent()">
+                        <ion-icon name="md-checkmark-circle-outline" class="fifth-text-color font-size-30"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
+</ion-footer>

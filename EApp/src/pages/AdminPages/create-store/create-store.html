@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()">
+            <ion-icon name="ios-arrow-back-outline" class="primary-text-color font-size-30"></ion-icon>
+        </button>
+        <button ion-button clear (click)="SaveStore()" class="float-right">
+            <ion-icon name="md-checkmark-circle-outline" class="primary-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <ion-input class="border-line-bottom-1px-primary" [(ngModel)]="storeInfo.Name" type="text" placeholder="Store Name"></ion-input>
+            </ion-col>
+            <ion-col col-12>
+                <ion-item>
+                    <ion-label>Rating</ion-label>
+                    <ion-select [(ngModel)]="storeInfo.StoreCategoryID">
+                        <ion-option value="2af7aa11-1455-431e-9d2a-9fd3be8bbaaa">Restaurant</ion-option>
+                        <ion-option value="111f1be4-4f46-402a-affe-ca2871ec9849">Clothing & Accessories</ion-option>
+                        <ion-option value="04d9ab0b-8043-450c-81b8-9f1436ef5025">Grocery</ion-option>
+                        <ion-option value="1cecf8d7-ba37-440a-af39-2aa4365f5af0">Bookshop</ion-option>
+                        <ion-option value="6c3b3a62-687c-42bd-971c-5a7f08dc862e">Music Shop</ion-option>
+                        <ion-option value="bcc67d99-af1c-4d03-8dbb-ba846ee18f07">Petshop</ion-option>
+                        <ion-option value="3acc2168-5236-4e43-a351-8f2822c3f0e7">General</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col col-12>
+                <!-- <upload-single-image [source]="''" [oid]="storeInfo.ID" (imageUploadedEvent)="InvokeBGImage($event)"></upload-single-image> -->
+                <upload-single-image1 [source]="''" [oid]="storeInfo.ID" (imageUploadedEvent)="InvokeBGImage($event)"></upload-single-image1>
+            </ion-col>
+            <ion-col col-12>
+                <!-- <upload-single-image [source]="''" [oid]="storeInfo.ID" (imageUploadedEvent)="InvokeLogoImage($event)"></upload-single-image> -->
+                <upload-single-image1 [source]="''" [oid]="storeInfo.ID" (imageUploadedEvent)="InvokeLogoImage($event)"></upload-single-image1>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

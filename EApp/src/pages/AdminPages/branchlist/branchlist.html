@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()" class="position-absolute z-index-100">
+            <ion-icon name="ios-arrow-back-outline" class="primary-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let branch of branches">
+            <p>{{branch.Address}}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

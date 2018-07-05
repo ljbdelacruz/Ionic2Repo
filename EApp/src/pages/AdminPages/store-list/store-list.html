@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()">
+            <ion-icon name="ios-arrow-back-outline" class="primary-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item detail-push no-lines *ngFor="let store of stores">
+            <ion-img item-start src="{{store.LogoImage.Source}}" class="height-50-px width-50-px border-radius-100p"></ion-img>
+            <p class="float-left">{{store.Name}}</p>
+            <button ion-button clear>
+                <ion-icon class="primary-text-color font-size-40" item-end name="ios-more"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

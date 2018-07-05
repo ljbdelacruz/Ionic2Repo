@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button *ngIf="!isProcessing" class="float-left" ion-button clear (click)="Close()">
+          <ion-icon class="primary-text-color font-size-30" name="ios-arrow-back"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding class="fourth-bg-color">
+    <div *ngIf="!isProcessing">
+        <p class="primary-text-color" *ngIf="validations[0]">*Required</p>
+        <ion-input type="text" class="border-line-1px-secondary border-radius-5-px primary-text-color" [(ngModel)]="userInfo.EmailAddress" placeholder="Email Address"></ion-input>
+        <p class="primary-text-color" *ngIf="validations[1]">*</p>
+        <ion-input type="password" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.Password" placeholder="Password"></ion-input>
+        <ion-input type="password" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.Repassword" placeholder="Re-Password"></ion-input>
+        <p class="primary-text-color" *ngIf="validations[2]">*</p>
+        <ion-input type="text" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.Firstname" placeholder="Firstname"></ion-input>
+        <p class="primary-text-color" *ngIf="validations[3]">*</p>
+        <ion-input type="text" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.Lastname" placeholder="Lastname"></ion-input>
+        <p class="primary-text-color" *ngIf="validations[4]">*</p>
+        <ion-input type="text" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.Middlename" placeholder="Middlename"></ion-input>
+        <p class="primary-text-color" *ngIf="validations[5]">*</p>
+        <ion-textarea type="text" class="border-line-1px-secondary border-radius-5-px margin-top-10-px height-100-px primary-text-color" [(ngModel)]="userInfo.Address" placeholder="Address"></ion-textarea>
+        <p class="primary-text-color" *ngIf="validations[6]">*</p>
+        <ion-input type="text" class="border-line-1px-secondary border-radius-5-px margin-top-10-px primary-text-color" [(ngModel)]="userInfo.ContactNumber" placeholder="Contact #"></ion-input>
+        <button ion-button class="width-100-percent margin-top-10-px primary-bg-color fifth-text-color" (click)="CreateUser()">SIGN UP</button>
+    </div>
+    <ion-spinner *ngIf="isProcessing" class="width-100-percent primary-text-color" name="bubbles"></ion-spinner>
+</ion-content>

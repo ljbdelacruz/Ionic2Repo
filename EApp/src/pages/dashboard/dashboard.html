@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="TogglePopover($event)">
+      <ion-icon name="md-menu" class="primary-text-color font-size-30"></ion-icon>
+    </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding clas="tertiary-bg-color">
+    <div *ngIf="mode==0">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button class="primary-bg-color width-120-px height-120-px border-radius-100p">
+                        <p class="text-align-center fifth-text-color">
+                        <ion-icon name="md-cart" class="font-size-30"></ion-icon>
+                        <br>
+                        Client Order
+                        </p>
+                    </button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button class="primary-bg-color width-120-px height-120-px border-radius-100p" (click)="GotoSearchStore()">
+                        <p class="text-align-center fifth-text-color">
+                        <ion-icon name="md-search" class="font-size-30"></ion-icon>
+                        <br>
+                        Search Store
+                        </p>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div *ngIf="mode==1">
+        <p>Store Attendant Dashboard</p>
+    </div>
+    <div *ngIf="mode==2">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button class="primary-bg-color width-120-px height-120-px border-radius-100p" (click)="CreateStore()">
+                                    <p class="text-align-center fifth-text-color">
+                                    <ion-icon name="md-cart" class="font-size-30"></ion-icon>
+                                    <br>
+                                    Create Store
+                                    </p>
+                    </button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button class="primary-bg-color width-120-px height-120-px border-radius-100p" (click)="StoreListAdmin()">
+                        <p class="text-align-center fifth-text-color">
+                        <ion-icon name="md-appstore" class="font-size-30"></ion-icon>
+                        <br>
+                        My Stores
+                        </p>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+    <div *ngIf="mode==3">
+        <p>Driver Dashboard</p>
+    </div>
+    <div *ngIf="mode==4">
+        <!--Super Admin-->
+    </div>
+</ion-content>

@@ -1,0 +1,20 @@
+<!-- Generated template for the ImageUploadComponent component -->
+<div>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4 *ngFor="let image of images">
+                <img (click)="RemoveImage(image)" src="{{image.Source}}" class="height-100-px width-100-percent" />
+            </ion-col>
+            <ion-col col-4 *ngIf="isUploading">
+                <progress-bar1 [progress]="progressPercent"></progress-bar1>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <button ion-button clear (click)="UploadEvent()">
+                  <ion-icon class="primary-text-color font-size-40" name="md-camera"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

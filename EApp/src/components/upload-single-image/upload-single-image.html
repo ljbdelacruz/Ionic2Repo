@@ -1,0 +1,13 @@
+<div>
+    <ion-grid>
+        <ion-col col-12>
+            <ion-img *ngIf="source.length>0?true:false" src="{{source}}"></ion-img>
+            <ion-img *ngIf="source.length<=0?true:false" src="{{noImage}}"></ion-img>
+        </ion-col>
+        <ion-col col-12>
+            <button ion-button clear (click)="UploadEvent()">
+          <ion-icon class="primary-text-color font-size-40" name="md-camera"></ion-icon>
+        </button>
+        </ion-col>
+    </ion-grid>
+</div>

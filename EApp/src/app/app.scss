@@ -1,0 +1,410 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+//colors
+.primary-text-color {
+    color: #003A4C !important;
+}
+
+.secondary-text-color {
+    color: #ffd468 !important;
+}
+
+.tertiary-text-color {
+    color: #9cecfb !important;
+}
+
+.fourth-text-color {
+    color: #c8f0ff !important;
+}
+
+.fifth-text-color {
+    color: white !important;
+}
+
+.sixth-text-color {
+    color: #7f7f7f !important;
+}
+
+.seventh-text-color {
+    color: #a30203 !important;
+}
+
+.seventh-bg-color {
+    background-color: rgba(208, 237, 255, 0.9)
+}
+
+.eight-bg-color {
+    background-color: rgba(116, 135, 216, 0.6)
+}
+
+//background colors
+.primary-bg-color {
+    background-color: #003A4C !important;
+}
+
+.secondary-bg-color {
+    background-color: #FFEFA2 !important;
+}
+
+.tertiary-bg-color {
+    background-color: #E7F3F7 !important;
+}
+
+.fourth-bg-color {
+    background-color: #c8f0ff !important;
+}
+
+.fifth-bg-color {
+    background-color: white !important;
+}
+
+.sixth-bg-color {
+    background-color: rgba(0, 0, 0, 0.7)
+}
+
+//max width
+.max-width-80p {
+    max-width: 80% !important;
+}
+
+.max-width-100p {
+    max-width: 100% !important;
+}
+
+//width
+.width-90-percent {
+    width: 90% !important;
+}
+
+.width-98-percent {
+    width: 98% !important;
+}
+
+.width-80-percent {
+    width: 90% !important;
+}
+
+.width-100-percent {
+    width: 100% !important;
+}
+
+.width-10-px {
+    width: 10px !important;
+}
+
+.width-20-px {
+    width: 20px !important;
+}
+
+.width-30-px {
+    width: 30px !important;
+}
+
+.width-50-px {
+    width: 50px !important;
+}
+
+.width-70-px {
+    width: 70px !important;
+}
+
+.width-100-px {
+    width: 100px !important;
+}
+
+.width-120-px {
+    width: 120px !important;
+}
+
+//height
+.height-30-percent {
+    height: 30% !important;
+}
+
+.height-100-percent {
+    height: 100% !important;
+}
+
+.height-10-px {
+    height: 10px !important;
+}
+
+.height-20-px {
+    height: 20px !important;
+}
+
+.height-30-px {
+    height: 30px !important;
+}
+
+.height-50-px {
+    height: 50px !important;
+}
+
+.height-70-px {
+    height: 70px !important;
+}
+
+.height-100-px {
+    height: 100px !important;
+}
+
+.height-120-px {
+    height: 120px !important;
+}
+
+.height-200-px {
+    height: 200px !important;
+}
+
+.height-300px {
+    height: 300px !important;
+}
+
+.height-500px {
+    height: 500px !important;
+}
+
+//borders/radius
+.border-radius-5-px {
+    border-radius: 5px;
+}
+
+.border-radius-10-px {
+    border-radius: 10px;
+}
+
+.border-radius-100p {
+    border-radius: 100% !important;
+}
+
+.border-line-1px-primary {
+    border: 1px solid white
+}
+
+.border-line-1px-secondary {
+    border: 1px solid #003A4C
+}
+
+.border-line-bottom-1px-fifth {
+    border-bottom: 1px solid white;
+}
+
+.border-line-bottom-1px-primary {
+    border-bottom: 1px solid #003A4C !important;
+}
+
+.border-line-bottom-1px-secondary {
+    border-bottom: 1px solid #7f7f7f !important;
+}
+
+//border-top
+.border-line-top-1px-primary {
+    border-top: 1px solid #003A4C !important;
+}
+
+.border-line-1px-fifth {
+    border: 1px solid white
+}
+
+//floating
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.float-clear {
+    clear: both !important;
+}
+
+//margin-top
+.margin-top-5-px {
+    margin-top: 5px !important;
+}
+
+.margin-top-10-px {
+    margin-top: 10px !important;
+}
+
+.margin-top-20-px {
+    margin-top: 20px !important;
+}
+
+.margin-top-40-px {
+    margin-top: 40px !important;
+}
+
+.margin-top-100-px {
+    margin-top: 100px !important;
+}
+
+.margin-top-200-px {
+    margin-top: 200px !important;
+}
+
+//margin-left
+.margin-left-5 {
+    margin-left: 5px !important;
+}
+
+.margin-left-10 {
+    margin-left: 10px !important;
+}
+
+.margin-left-20 {
+    margin-left: 20px !important;
+}
+
+//bottom
+.margin-bottom-5px {
+    margin-bottom: 5px !important;
+}
+
+//padding
+.padding-top-5px {
+    padding-top: 5px !important;
+}
+
+.padding-top-20px {
+    padding-top: 20px !important;
+}
+
+.padding-left-5px {
+    padding-left: 5px !important;
+}
+
+//text alignment
+.text-align-center {
+    text-align: center !important;
+}
+
+.vertical-align-middle {
+    vertical-align: middle !important;
+}
+
+.text-align-left {
+    text-align: left !important;
+}
+
+.font-weight-bold {
+    font-weight: bold !important;
+}
+
+//overflow
+.overflow-hidden {
+    overflow: hidden;
+}
+
+//fontsize
+.font-size-8 {
+    font-size: 8px !important;
+}
+
+.font-size-10 {
+    font-size: 10px !important;
+}
+
+.font-size-15 {
+    font-size: 15px !important;
+}
+
+.font-size-20 {
+    font-size: 20px !important;
+}
+
+.font-size-25 {
+    font-size: 25px !important;
+}
+
+.font-size-30 {
+    font-size: 30px !important;
+}
+
+.font-size-40 {
+    font-size: 40px !important;
+}
+
+//toolbar navheader
+.toolbar-background {
+    background-color: #ffd468 // background-color: rgb(179, 182, 255) !important;
+}
+
+//position
+.position-absolute {
+    position: absolute !important;
+}
+
+.position-relative {
+    position: relative !important;
+}
+
+//transform
+.transform-translate3d {
+    transform: translate3d(0px, 0px, 0px) !important;
+}
+
+.transform-translate2d-250px {
+    transform: translate(0px, -300px) !important;
+}
+
+.transform-translate2d-n250px {
+    transform: translate(190px, -300px) !important;
+}
+
+.transform-translate2d-205px {
+    transform: translate(0px, -80px) !important;
+}
+
+.transform-translate2d-80px {
+    transform: translate(0px, -300px) !important;
+}
+
+.transform-translate2d-type1 {
+    transform: translate(0px, -140px) !important;
+}
+
+.z-index-50 {
+    z-index: 50 !important;
+}
+
+//z-index
+.z-index-100 {
+    z-index: 100 !important;
+}
+
+z-index-101 {
+    z-index: 101 !important;
+}
+
+.word-break {
+    word-wrap: break-word;
+}
+
+//text input placeholder color
+.text-input::-moz-placeholder {
+    color: white;
+}
+
+.text-input:-ms-input-placeholder {
+    color: white;
+}
+
+.text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: white;
+}

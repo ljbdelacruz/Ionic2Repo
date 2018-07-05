@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <button ion-button clear (click)="Close()" class="position-absolute z-index-100">
+            <ion-icon name="ios-arrow-back-outline" class="primary-text-color font-size-30"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-grid>
+        <ion-row *ngIf="mode==1?true:false">
+            <!--User page-->
+            <ion-col col-6>
+                <button ion-button class="primary-bg-color width-100-percent height-120-px">
+                    <p class="text-align-center fifth-text-color">
+                    <ion-icon name="md-star" class="font-size-30"></ion-icon>
+                    <br>
+                    Store Reviews
+                    </p>
+                </button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="mode==0?true:false">
+            <!--Admin page-->
+            <ion-col col-12>
+                <p>{{storeInfo.Name}}</p>
+                <button ion-button>Branches</button>
+                <button ion-button>Items</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
